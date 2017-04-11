@@ -22,7 +22,23 @@ let rec selectionne inf l =
 				 then selectionne inf (x::r)
 				 else selectionne inf (y::r);;
 
+(************************  supprime  ******************************)
 
+let rec supprime x l =
+    match l with
+    [] -> []
+    |a::[] -> if a == x
+              then []
+              else [a]
+    |a::y::[] -> if a == x
+                 then [y]
+                 else supprime x [y]
+    |a::(y::r) -> if a == x
+                  then y::r
+                  else if y == x
+                       then a::r
+                       else a::(y::(supprime x r)) ;;
+		       
 (********************** tri_selection_min **********************)
 
 let rec tri_selection_min inf liste =
